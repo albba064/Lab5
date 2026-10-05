@@ -51,6 +51,10 @@ earthquake_API <- function(format = "csv",
 test <- earthquake_API(starttime = "2026-09-30", endtime = "2026-10-01", min_magnitude = 0)
 #test$time <- as.character(test$time)
 #test_sf <- sf::st_as_sf(test, coords = c("latitude", "longitude"))
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7463f1c63fc083beabe7bba1c530d9f7c858644
 
 #---------- USE FOR APP ------------------
 richter_colors <- c(
