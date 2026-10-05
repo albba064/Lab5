@@ -1,9 +1,9 @@
 
 #' Access the USGS Eartchquake API
-#' @param starttime start date- character string format YYYY-MM-DD
-#' @param endtime end date- character string format YYYY-MM-DD
-#' @param min_magnitude Limit to events with a magnitude larger than the specified minimum
-#' @param max_magnitude Limit to events with a magnitude smaller than the specified maximum
+#' @param starttime Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"
+#' @param endtime Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"
+#' @param min_magnitude Limit to events with a magnitude larger than the specified minimum, numeric
+#' @param max_magnitude Limit to events with a magnitude smaller than the specified maximum, numeric
 #'
 #' @return a data.frame containing time, latitude, longitude, magnitude and location name of events
 #'
