@@ -6,8 +6,7 @@ earthquake_API <- function(format = "csv",
                            min_magnitude = 6){
 
   #check that start-and endtime can be coerced into class "DATE" and that min_magnitude is numeric and finite
-  if (is.na(as.Date(as.character(starttime), tz = 'UTC', format = '%Y-%m-%d')) |
-      is.na(as.Date(as.character(endtime), tz = 'UTC', format = '%Y-%m-%d'))){
+  if (is.na(as.Date(as.character(c(starttime, endtime)), tz = 'UTC', format = '%Y-%m-%d'))){
     stop("Invalid date format")
   } else if(!is.numeric(min_magnitude)){
     stop("min_magnitude must be numeric")
