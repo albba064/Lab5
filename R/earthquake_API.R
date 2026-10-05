@@ -50,23 +50,9 @@ earthquake_API <- function(format = "csv",
 }
 test <- earthquake_API(starttime = "2026-09-30", endtime = "2026-10-01", min_magnitude = 0)
 #test$time <- as.character(test$time)
-test_sf <- sf::st_as_sf(test, coords = c("latitude", "longitude"))
+#test_sf <- sf::st_as_sf(test, coords = c("latitude", "longitude"))
 
-leaflet::leaflet(data = test) |> leaflet::addTiles() |>
-  leaflet::addCircleMarkers(lng = ~longitude, lat = ~latitude, radius = ~mag,
-                            popup = ~paste0("<b>", place,"</b><br><b>Time</b>: ",as.character(time), "</b><br><b>Magnitude:</b> ", mag,"</b>"))
-richter_colors <- c(
-  "#2ECC71",  # 0–1: very low
-  "#A3D977",  # 1–2
-  "#F1E05A",  # 2–3
-  "#F5B041",  # 3–4
-  "#E67E22",  # 4–5
-  "#E74C3C",  # 5–6
-  "#C0392B",  # 6–7
-  "#8E2C2C",  # 7–8
-  "#5B1A1A"   # 8+: extreme
-)
-
+#---------- USE FOR APP ------------------
 richter_colors <- c(
   "#2ECC71",  # low magnitude
   "#A3D977",
