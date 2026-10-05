@@ -2,6 +2,7 @@
 # Lab5
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/albba064/Lab5/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/albba064/Lab5/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of Lab5 is to ...
