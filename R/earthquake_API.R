@@ -3,18 +3,21 @@
 earthquake_API <- function(format = "csv",
                            starttime = "2026-10-01",
                            endtime = "2026-10-05",
-                           min_magnitude = 6){
+                           min_magnitude = -1,
+                           max_magnitude = 15){
 
   #check that start-and endtime can be coerced into class "DATE" and that min_magnitude is numeric and finite
-  if (is.na(as.Date(as.character(c(starttime, endtime)), tz = 'UTC', format = '%Y-%m-%d'))){
+  if (is.na(as.Date(as.character(starttime), tz = 'UTC', format = '%Y-%m-%d')) ||
+      is.na(as.Date(as.character(endtime), tz = 'UTC', format = '%Y-%m-%d'))){
     stop("Invalid date format")
-  } else if(!is.numeric(min_magnitude)){
-    stop("min_magnitude must be numeric")
+  } else if(!is.numeric(c(min_magnitude, max_magnitude))){
+    stop("min_magnitude, max_magnitude must be numeric")
   }
   parameters <- paste0("?format=", format,
                        "&starttime=",starttime,
                        "&endtime=", endtime,
-                       "&minmagnitude=", min_magnitude)
+                       "&minmagnitude=", min_magnitude,
+                       "&maxmagnitude=", max_magnitude)
 
   url <- "https://earthquake.usgs.gov/fdsnws/event/1/"
 
@@ -47,7 +50,7 @@ earthquake_API <- function(format = "csv",
 
 
 }
-test <- earthquake_API(starttime = "2026-09-30", endtime = "2026-10-01", min_magnitude = 0)
+test <- earthquake_API(starttime = "2026-09-01", endtime = "2026-10-01", min_magnitude = 0, max_magnitude = 10)
 #test$time <- as.character(test$time)
 #test_sf <- sf::st_as_sf(test, coords = c("latitude", "longitude"))
 
