@@ -36,7 +36,7 @@ earthquake_API <- function(format = "csv",
 
   # check if successful response code
   if (pull$status_code != 200) {
-    stop(paste("API returned not 200 status code: ", pull$status_code))
+    stop(paste("API did not return successful response code: ", pull$status_code))
   }
 
 
