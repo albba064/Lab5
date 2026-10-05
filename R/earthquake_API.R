@@ -1,5 +1,13 @@
 
-
+#' Access the USGS Eartchquake API
+#' @param starttime start date- character string format YYYY-MM-DD
+#' @param endtime end date- character string format YYYY-MM-DD
+#' @param min_magnitude Limit to events with a magnitude larger than the specified minimum
+#' @param max_magnitude Limit to events with a magnitude smaller than the specified maximum
+#'
+#' @return a data.frame containing time, latitude, longitude, magnitude and location name of events
+#'
+#' @export
 earthquake_API <- function(format = "csv",
                            starttime = "2026-10-01",
                            endtime = "2026-10-05",
