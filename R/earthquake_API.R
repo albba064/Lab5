@@ -7,6 +7,7 @@
 #'
 #' @return a data.frame containing time, latitude, longitude, magnitude and location name of events
 #'
+#' @import httr
 #' @export
 earthquake_API <- function(format = "csv",
                            starttime = "2026-10-01",
