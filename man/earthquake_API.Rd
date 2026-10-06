@@ -13,13 +13,13 @@ earthquake_API(
 )
 }
 \arguments{
-\item{starttime}{start date- character string format YYYY-MM-DD}
+\item{starttime}{Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"}
 
-\item{endtime}{end date- character string format YYYY-MM-DD}
+\item{endtime}{Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"}
 
-\item{min_magnitude}{Limit to events with a magnitude larger than the specified minimum}
+\item{min_magnitude}{Limit to events with a magnitude larger than the specified minimum, numeric}
 
-\item{max_magnitude}{Limit to events with a magnitude smaller than the specified maximum}
+\item{max_magnitude}{Limit to events with a magnitude smaller than the specified maximum, numeric}
 }
 \value{
 a data.frame containing time, latitude, longitude, magnitude and location name of events
