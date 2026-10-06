@@ -3,6 +3,7 @@ test_that("Errounous input handled.",{
   expect_error(earthquake_API(starttime = "2026-10-01", endtime = "Today", min_magnitude = 0, max_magnitude = 10))
   expect_error(earthquake_API(starttime = "2026-10-01", endtime = "2026-10-05", min_magnitude = "low", max_magnitude = 10))
   expect_error(earthquake_API(starttime = "2026-10-01", endtime = "2026-10-05", min_magnitude = 0, max_magnitude = "high"))
+  expect_error(earthquake_API(starttime = "2026-10-01", endtime = "2026-09-10", min_magnitude = 5, max_magnitude = 7))
 })
 
 test_that("Correct output", {
