@@ -14,6 +14,44 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Discription 
+API for the USGS Earthquake Catalog ([link](https://earthquake.usgs.gov/fdsnws/event/1/)) that extracts recorded earthquakes that happend within a time period and that were of limited to a certain range of magnitude, both defined by the user.  
+
+### The function accepts the following input from the user:
+- **starttime**: Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"  
+- **endtime**: Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"  
+- **min_magnitude**: Limit to events with a magnitude larger than the specified minimum, numeric  
+- **max_magnitude**: Limit to events with a magnitude smaller than the specified maximum, numeric  
+
+### Returns a data.frame containing:
+- **time**: date (YYYY-MM-DD) and time event took place  
+- **latitude**: recorded latitude of event  
+- **longitude**: recorded longitude of event  
+- **place**: Descriptive name of were event took place  
+
+### Install package if needed 
+```{r, eval=FALSE}
+pak::pak("albba064/Lab5")
+```
+
+# Load package
 ```{r setup}
 library(Lab5)
+```
+
+# Example 
+## Make request
+Get all earthquakes from USGS that happend between 25th of September 2026 and 1st of October 2026 that had a recorded magnitude 
+between 5.5 and 10 
+```{r}
+output <- earthquake_API(starttime = "2026-09-25", 
+                         endtime = "2026-10-01", 
+                         min_magnitude = 5.5,
+                         max_magnitude = 10)
+```
+
+## Output
+Returns a data frame containing time, latitude, longitud and place for the observations
+```{r}
+knitr::kable(output)
 ```
