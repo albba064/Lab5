@@ -17,9 +17,12 @@ LazyData: true
 URL: https://github.com/albba064/Lab5
 BugReports: https://github.com/albba064/Lab5/issues
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 RoxygenNote: 7.3.3
 Imports: 
     httr,
     readr
+VignetteBuilder: knitr
