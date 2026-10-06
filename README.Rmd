@@ -25,7 +25,7 @@ Lab5 is a R package to handle requests to USGS Catalog API.
 
 You can install the development version of Lab5 from [GitHub](https://github.com/) with:
 
-``` {r}
+``` {r, eval=FALSE}
 # install.packages("pak")
 pak::pak("albba064/Lab5")
 ```
@@ -42,5 +42,5 @@ data <- earthquake_API(
   max_magnitude = 10
 )
 
-head(data)
+knitr::kable(head(data))
 ```
