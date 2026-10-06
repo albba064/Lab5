@@ -1,4 +1,4 @@
-test_that("Errounous input handled."{
+test_that("Errounous input handled.",{
   expect_error(earthquake_API(starttime = "Yesterday", endtime = "2026-10-01", min_magnitude = 0, max_magnitude = 10))
   expect_error(earthquake_API(starttime = "2026-10-01", endtime = "Today", min_magnitude = 0, max_magnitude = 10))
   expect_error(earthquake_API(starttime = "2026-10-01", endtime = "2026-10-05", min_magnitude = "low", max_magnitude = 10))
