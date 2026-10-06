@@ -14,7 +14,6 @@ earthquake_API <- function(starttime = "2026-10-01",
                            endtime = "2026-10-05",
                            min_magnitude = -1,
                            max_magnitude = 15){
-  format = "csv"
   #check that start-and endtime can be coerced into class "DATE" and that min_magnitude is numeric and finite
   if (is.na(as.Date(as.character(starttime), tz = 'UTC', format = '%Y-%m-%d')) ||
       is.na(as.Date(as.character(endtime), tz = 'UTC', format = '%Y-%m-%d'))){
@@ -22,7 +21,7 @@ earthquake_API <- function(starttime = "2026-10-01",
   } else if(!is.numeric(c(min_magnitude, max_magnitude))){
     stop("min_magnitude, max_magnitude must be numeric")
   }
-  parameters <- paste0("?format=", format,
+  parameters <- paste0("?format=", "csv",
                        "&starttime=",starttime,
                        "&endtime=", endtime,
                        "&minmagnitude=", min_magnitude,
@@ -31,17 +30,14 @@ earthquake_API <- function(starttime = "2026-10-01",
   url <- "https://earthquake.usgs.gov/fdsnws/event/1/"
 
 
-  count <- as.numeric(httr::content(httr::GET(paste0(url, "count", parameters))))
+  num_events <- as.numeric(httr::content(httr::GET(paste0("https://earthquake.usgs.gov/fdsnws/event/1/count", parameters))))
 
-  if (count > 20000) {
+  if (num_events > 20000) {
     stop(paste("So many events requested! USGS API has limit of 20 000 events"))
   }
 
-  # full request URL
-  url_request <- paste0(url, "query", parameters)
-
   # get request from url
-  pull <- httr::GET(url_request)
+  pull <- httr::GET(paste0(url, "query", parameters))
 
   # check if successful response code
   if (pull$status_code != 200) {
@@ -49,10 +45,8 @@ earthquake_API <- function(starttime = "2026-10-01",
   }
 
 
-  response_as_text <- httr::content(pull, as = "text")
-
   df <- readr::read_csv(
-    file = response_as_text,
+    file = httr::content(pull, as = "text"),
     col_names = TRUE,
     col_select = c("time", "latitude", "longitude", "mag", "place"),
     show_col_types = FALSE)
