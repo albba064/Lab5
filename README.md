@@ -20,6 +20,12 @@ You can install the development version of Lab5 from
 pak::pak("albba064/Lab5")
 ```
 
+Or if you want to install with vignettes:
+
+``` r
+devtools::install_github("albba064/Lab4", build_vignettes = TRUE)
+```
+
 ## Example
 
 ### Load data from API
