@@ -5,7 +5,6 @@
 \title{Access the USGS Eartchquake API}
 \usage{
 earthquake_API(
-  format = "csv",
   starttime = "2026-10-01",
   endtime = "2026-10-05",
   min_magnitude = -1,
@@ -13,8 +12,6 @@ earthquake_API(
 )
 }
 \arguments{
-\item{format}{CSV DO NOT CHANGE}
-
 \item{starttime}{Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"}
 
 \item{endtime}{Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"}
