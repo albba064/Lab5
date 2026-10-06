@@ -18,6 +18,7 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     httr,
+    httr2,
     readr
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.1.0

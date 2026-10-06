@@ -11,7 +11,7 @@
 #' @return a data.frame containing time, latitude, longitude,
 #' magnitude and location name of events
 #'
-#' @import httr
+#' @import httr2
 #' @import readr
 #' @export
 earthquake_API <- function(starttime = "2026-10-01",
@@ -29,40 +29,40 @@ earthquake_API <- function(starttime = "2026-10-01",
   } else if (!is.numeric(c(min_magnitude, max_magnitude))) {
     stop("min_magnitude, max_magnitude must be numeric")
   }
-  parameters <- paste0(
-    "?format=", "csv",
-    "&starttime=", starttime,
-    "&endtime=", endtime,
-    "&minmagnitude=", min_magnitude,
-    "&maxmagnitude=", max_magnitude
-  )
 
   url <- "https://earthquake.usgs.gov/fdsnws/event/1/"
 
 
-  num_events <- as.numeric(httr::content(httr::GET(paste0("https://earthquake.usgs.gov/fdsnws/event/1/count", parameters))))
+  num_events <- httr2::request(paste0(url, "count")) |>
+    httr2::req_url_query(
+      starttime = starttime,
+      endtime = endtime,
+      minmagnitude = min_magnitude,
+      maxmagnitude = max_magnitude
+    ) |>
+    httr2::req_perform() |>
+    httr2::resp_check_status() |>
+    httr2::resp_body_string() |>
+    as.numeric()
 
   if (num_events > 20000) {
-    stop(paste("So many events requested! USGS API has limit of 20 000 events"))
+    stop("So many events requested! USGS API has a limit of 20,000 events")
   }
 
-  # get request from url
-  pull <- httr::GET(paste0(url, "query", parameters))
+  response <- httr2::request(paste0(url, "query")) |>
+    httr2::req_url_query(
+      format = "csv",
+      starttime = starttime,
+      endtime = endtime,
+      minmagnitude = min_magnitude,
+      maxmagnitude = max_magnitude
+    ) |>
+    httr2::req_perform() |>
+    httr2::resp_check_status()
 
-  # check if successful response code
-  if (pull$status_code != 200) {
-    stop(
-      paste(
-        "API did not return successful response code: ",
-        pull$status_code
-      )
-    )
-  }
-
-  response_as_text <- httr::content(pull, as = "text")
-
+  # Convert response to data frame
   df <- readr::read_csv(
-    file = I(response_as_text),
+    httr2::resp_body_string(response),
     col_names = TRUE,
     col_select = c("time", "latitude", "longitude", "mag", "place"),
     show_col_types = FALSE
