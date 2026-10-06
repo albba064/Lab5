@@ -1,5 +1,6 @@
 
 #' Access the USGS Eartchquake API
+#' @param format CSV DO NOT CHANGE
 #' @param starttime Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"
 #' @param endtime Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"
 #' @param min_magnitude Limit to events with a magnitude larger than the specified minimum, numeric
