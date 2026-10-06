@@ -13,6 +13,8 @@ earthquake_API(
 )
 }
 \arguments{
+\item{format}{CSV DO NOT CHANGE}
+
 \item{starttime}{Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"}
 
 \item{endtime}{Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"}
