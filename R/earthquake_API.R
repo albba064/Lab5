@@ -1,6 +1,5 @@
 
 #' Access the USGS Eartchquake API
-#' @param format CSV DO NOT CHANGE
 #' @param starttime Limit to events on or after the specified end start Enter character string "YYYY-MM-DD"
 #' @param endtime Limit to events on or before the specified end time. Enter character string "YYYY-MM-DD"
 #' @param min_magnitude Limit to events with a magnitude larger than the specified minimum, numeric
@@ -11,12 +10,11 @@
 #' @import httr
 #' @import readr
 #' @export
-earthquake_API <- function(format = "csv",
-                           starttime = "2026-10-01",
+earthquake_API <- function(starttime = "2026-10-01",
                            endtime = "2026-10-05",
                            min_magnitude = -1,
                            max_magnitude = 15){
-
+  format = "csv"
   #check that start-and endtime can be coerced into class "DATE" and that min_magnitude is numeric and finite
   if (is.na(as.Date(as.character(starttime), tz = 'UTC', format = '%Y-%m-%d')) ||
       is.na(as.Date(as.character(endtime), tz = 'UTC', format = '%Y-%m-%d'))){
