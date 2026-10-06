@@ -1,16 +1,11 @@
 Package: Lab5
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Earthquake API 
 Version: 0.1.0
 Authors@R: c(
-    person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
-    )
-  )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
+    person("Albin", "Bäckström", , "albba064@student.liu.se", role = c("aut", "cre")),
+    person("Jonatan", "Prepuk", ,"jonpr189@student.liu.se", role= c("aut")))
+Description: A R package to handle requests to USGS Earthquake Catalog.  
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,8 +16,8 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-RoxygenNote: 7.3.3
 Imports: 
     httr,
     readr
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0

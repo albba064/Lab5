@@ -1,0 +1,46 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Lab5
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/albba064/Lab5/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/albba064/Lab5/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+Lab5 is a R package to handle requests to USGS Catalog API. 
+
+## Installation
+
+You can install the development version of Lab5 from [GitHub](https://github.com/) with:
+
+``` {r}
+# install.packages("pak")
+pak::pak("albba064/Lab5")
+```
+
+## Example
+### Load data from API
+```{r load_data}
+library(Lab5)
+
+data <- earthquake_API(
+  starttime = "2026-10-01",
+  endtime = "2026-10-05",
+  min_magnitude = 5,
+  max_magnitude = 10
+)
+
+head(data)
+```
